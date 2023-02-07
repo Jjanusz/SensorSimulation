@@ -144,7 +144,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Clasisificator.h" />
+    <ClInclude Include="Clasificator.h" />
     <ClInclude Include="Sensor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

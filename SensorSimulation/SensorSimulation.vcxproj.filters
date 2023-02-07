@@ -29,7 +29,7 @@
     <ClInclude Include="Sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Clasisificator.h">
+    <ClInclude Include="Clasificator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

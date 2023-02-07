@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "../SensorSimulation/Sensor.h"
-#include "../SensorSimulation/Clasisificator.h"
+#include "../SensorSimulation/Clasificator.h"
 
 using namespace testing;
 
@@ -28,10 +28,6 @@ TEST(NumberGenerator, IsInRange)
 {
     MockSensor mock;
     EXPECT_CALL(mock, Generate);
-    EXPECT_THAT(Sensor::Generate, IsBetween(40, 46));
+    EXPECT_THAT(Sensor::Generate, IsBetween(minvalue, maxvalue));
 }
-
-
-
-
 
