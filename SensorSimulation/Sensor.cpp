@@ -28,9 +28,9 @@ void Sensor::startSensor()
 	while (true)
 	{
 		int temp = generate();
-		mutex.lock();
+		std::unique_lock<std::mutex> lock(mutex);
 		std::cout << "$FIX, ["<< id << "], [" << type << "], [" << temp << "], [" << clasificator.classify(temp)<< "]" << '\n' ; 
-		mutex.unlock();
+		lock.unlock();
 		std::this_thread::sleep_for(std::chrono::nanoseconds(period));
 		//get unique lock//
 	}

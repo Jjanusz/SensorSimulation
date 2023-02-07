@@ -9,9 +9,9 @@ int main()
 	
 
 
-	Sensor Speed(1, "Speed",-200,-100);
-	Sensor Position(2, "Position",-10000,10000) ;
-	Sensor Depth(3, "Depth",0,255);
+	Sensor Speed(1, "Speed",-10, 100);
+	Sensor Position(2, "Position",-10000, 10000) ;
+	Sensor Depth(3, "Depth",0, 255);
 
 	Speed.setPeriod(2);
 	Position.setPeriod(1);

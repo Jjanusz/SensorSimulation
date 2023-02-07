@@ -7,7 +7,8 @@ using namespace testing;
 
 TEST(Classificator, NormalPositive)
 {
-   
+    //minwarning = 10 maxwarning = 90
+     //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
     EXPECT_EQ(x.classify(50), "Normal");
@@ -18,6 +19,8 @@ TEST(Classificator, NormalPositive)
 
 TEST(Classificator, AlarmPositive)
 {
+    //minwarning = 10 maxwarning = 90
+    //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
     EXPECT_EQ(x.classify(92), "Alarm");
@@ -27,6 +30,8 @@ TEST(Classificator, AlarmPositive)
 
 TEST(Classificator, WarningPositive)
 {
+    //minwarning = 10 maxwarning = 90
+    //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
     EXPECT_EQ(x.classify(80), "Warning");
@@ -69,6 +74,8 @@ TEST(Classificator, WarningOneNegative)
 
 TEST(Classificator, NormalAllNegative)
 {
+    //minwarning = -190 maxwarning = -110
+   //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
     EXPECT_EQ(x.classify(-150), "Normal");
@@ -77,6 +84,8 @@ TEST(Classificator, NormalAllNegative)
 
 TEST(Classificator, AlarmAllNegative)
 {
+    //minwarning = -190 maxwarning = -110
+   //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
     EXPECT_EQ(x.classify(-105), "Alarm");
@@ -86,6 +95,8 @@ TEST(Classificator, AlarmAllNegative)
 
 TEST(Classificator, WarningAllNegative)
 {
+    //minwarning = -190 maxwarning = -110
+   //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
     EXPECT_EQ(x.classify(-180), "Warning");
