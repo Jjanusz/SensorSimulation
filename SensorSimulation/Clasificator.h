@@ -11,7 +11,7 @@
 class Clasificator
 {
 public:
-	void calcLimits(int, int);
+	void calcLimits(float, float);
 	std::string classify(int);
 
 private:
@@ -19,4 +19,6 @@ private:
 	float warning = 0.15;
 	float minnormal;
 	float maxnormal;
+	float minwarning;
+	float maxwarning;
 };

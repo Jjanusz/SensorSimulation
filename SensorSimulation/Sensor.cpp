@@ -27,14 +27,12 @@ void Sensor::startSensor()
 	clasificator.calcLimits(minvalue, maxvalue);
 	while (true)
 	{
-		
-		
 		int temp = generate();
 		mutex.lock();
 		std::cout << "$FIX, ["<< id << "], [" << type << "], [" << temp << "], [" << clasificator.classify(temp)<< "]" << '\n' ; 
 		mutex.unlock();
 		std::this_thread::sleep_for(std::chrono::nanoseconds(period));
-		
+		//get unique lock//
 	}
 }
 
