@@ -27,9 +27,14 @@ void Sensor::startSensor()
 	clasificator.calcLimits(minvalue, maxvalue);
 	while (true)
 	{
-		clasificator.classify(generate());
+		
+		
+		int temp = generate();
+		mutex.lock();
+		std::cout << "$FIX, ["<< id << "], [" << type << "], [" << temp << "], [" << clasificator.classify(temp)<< "]" << '\n' ; 
+		mutex.unlock();
 		std::this_thread::sleep_for(std::chrono::nanoseconds(period));
-		std::cout << generate();
+		
 	}
 }
 
@@ -45,3 +50,5 @@ void Sensor::setPeriod(float f)
 	fperiod=fperiod * 1000000000;
 	period = static_cast<int>(fperiod);
 }
+
+std::mutex Sensor::mutex;

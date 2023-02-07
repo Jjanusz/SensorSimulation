@@ -3,14 +3,15 @@
 #include <ctime>
 #include <chrono>
 #include <iostream>
-#include "Clasificator.h"
 #include <thread >
 #include <random>
+#include <mutex>
+#include "Clasificator.h"
 class Sensor
 {
 public:
 
-	
+	static std::mutex mutex;
 	Sensor(int, std::string, int, int);
 	Clasificator clasificator;
 
