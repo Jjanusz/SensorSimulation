@@ -12,14 +12,14 @@ class Sensor
 public:
 
 	static std::mutex mutex;
-	Sensor(int, std::string, int, int);
+	Sensor(int, std::string, int, int, float);
 	Clasificator clasificator;
 
 	int generate();
 	void setRange(int,int);
 	void setPeriod(float);
 	void startSensor();
-	
+	void Start();
 
 private:
 	int id;

@@ -4,12 +4,13 @@
 
 
 
-Sensor::Sensor(int idz, std::string typez, int minz, int maxz)
+Sensor::Sensor(int idz, std::string typez, int minz, int maxz, float frequencyz)
 {
 	id = idz;
 	type = typez;
 	maxvalue = maxz;
 	minvalue = minz;
+	setPeriod(frequencyz);
 }
 
 
@@ -22,8 +23,14 @@ int Sensor::generate()
 	return distrib(gen);
 }
 
+
+
+
 void Sensor::startSensor()
 {
+
+	
+
 	clasificator.calcLimits(minvalue, maxvalue);
 	while (true)
 	{

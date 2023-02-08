@@ -1,27 +1,43 @@
 
 #include "Sensor.h"
+#include "JsonReader.h"
+#include <filesystem>
+#include <ios>
+#include <istream>
+#include <vector>
+#include <memory>
 
 
 
 int main()
 {
+	
+	JsonReader config;
+	config.ReadConfig();
+	
+	std::vector<std::unique_ptr<Sensor>> Sensors;
+	std::vector<std::thread> StartSensors;
+	for (const auto& element : config.data["Sensors"])
+	{
+		int id = element.at("ID");
+		float frequency = element.at("Frequency");
+		int minvalue = element.at("MinValue");
+		int maxvalue = element.at("MaxValue");
+		std::string Type = element.at("Type");
+
+		std::unique_ptr<Sensor> Sens(new Sensor(id, Type, minvalue, maxvalue, frequency));
+		
+		StartSensors.push_back(std::thread (&Sensor::startSensor, *Sens));
+	}
+
+	for (std::thread& i : StartSensors)
+	{
+		if (i.joinable())
+		{
+			i.join();
+		}
+
+	}
 
 	
-
-
-	Sensor Speed(1, "Speed",-10, 100);
-	Sensor Position(2, "Position",-10000, 10000) ;
-	Sensor Depth(3, "Depth",0, 255);
-
-	Speed.setPeriod(2);
-	Position.setPeriod(1);
-	Depth.setPeriod(10);
-
-	std::thread t1(&Sensor::startSensor, &Speed);
-	std::thread t2(&Sensor::startSensor, &Position);
-	std::thread t3(&Sensor::startSensor, &Depth);
-
-	t1.join();
-	t2.join();
-	t3.join();
 }

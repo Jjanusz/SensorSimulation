@@ -24,6 +24,9 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JsonReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sensor.h">
@@ -32,5 +35,12 @@
     <ClInclude Include="Clasificator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JsonReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sensorConfig.json" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
