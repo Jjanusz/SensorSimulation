@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clasificator.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="JsonReader.h" />
     <ClInclude Include="Sensor.h" />
   </ItemGroup>

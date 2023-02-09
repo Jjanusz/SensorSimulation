@@ -16,8 +16,8 @@ public:
 	Clasificator clasificator;
 
 	int generate();
-	void setRange(int,int);
-	void setPeriod(float);
+	void setRange(int minvalue,int maxvalue);
+	void setPeriod(float frequency);
 	void startSensor();
 	void Start();
 

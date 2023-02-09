@@ -1,33 +1,36 @@
-#pragma once
+#include "Constants.h"
 #include  "Clasificator.h"
 #include  <string>
+#include <tuple>
 
-
-std::string Clasificator::classify(int value)
+std::string Clasificator::classify(int value) const
 {
-	std::string alarm = "Alarm";
-	std::string normal = "Normal";
-	std::string warning = "Warning";
 
 	if (value >= minnormal && value <= maxnormal)
 	{
-		return normal;
+		return normaltext;
 	}
 	else if (value >= minwarning && value <= maxwarning)
 	{
-		return warning;
+		return warningtext;
 	}
 	else
 	{
-		return alarm;
+		return alarmtext;
 	}
 	
 }
 
+Clasificator::LimitRange Clasificator::calcLimitRange(float min, float max, float width) const
+{
+	const float tmpmin = (max - min) * width + min;
+	const float tmpmax = (max - min) * (1.0 - width) + min;
+	return std::make_pair(tmpmin, tmpmax);
+}
 void Clasificator::calcLimits(float min, float max)
 {
-	 minnormal = (max - min) * (warning + alarm) + min;
-	 maxnormal = (max - min) * (1.0 - warning - alarm) + min;
-	 minwarning = (max - min) * (alarm) + min;
-	 maxwarning = (max - min) * (1.0 - alarm) + min;
+
+	std::tie(minnormal, maxnormal) = calcLimitRange(min, max, warning + alarm);
+	std::tie(minwarning, maxwarning) = calcLimitRange(min, max, alarm);
+	
 }

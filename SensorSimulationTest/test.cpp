@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "../SensorSimulation/Sensor.h"
 #include "../SensorSimulation/Clasificator.h"
-
+#include "../SensorSimulation/Constants.h"
 using namespace testing;
 
 
@@ -11,9 +11,9 @@ TEST(Classificator, NormalPositive)
      //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
-    EXPECT_EQ(x.classify(50), "Normal");
-    EXPECT_EQ(x.classify(25), "Normal");
-    EXPECT_EQ(x.classify(26), "Normal");
+    EXPECT_EQ(x.classify(50), normaltext);
+    EXPECT_EQ(x.classify(25), normaltext);
+    EXPECT_EQ(x.classify(26), normaltext);
 }
 
 
@@ -23,8 +23,8 @@ TEST(Classificator, AlarmPositive)
     //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
-    EXPECT_EQ(x.classify(92), "Alarm");
-    EXPECT_EQ(x.classify(6), "Alarm");
+    EXPECT_EQ(x.classify(92), alarmtext);
+    EXPECT_EQ(x.classify(6), alarmtext);
 }
 
 
@@ -34,8 +34,8 @@ TEST(Classificator, WarningPositive)
     //minnormal = 25 maxnormal = 75
     Clasificator x;
     x.calcLimits(0, 100);
-    EXPECT_EQ(x.classify(80), "Warning");
-    EXPECT_EQ(x.classify(20), "Warning");
+    EXPECT_EQ(x.classify(80), warningtext);
+    EXPECT_EQ(x.classify(20), warningtext);
 }
 
 
@@ -45,8 +45,8 @@ TEST(Classificator, NormalOneNegative)
     //minnormal = -20 maxnormal = 60
     Clasificator x;
     x.calcLimits(-60, 100);
-    EXPECT_EQ(x.classify(30), "Normal");
-    EXPECT_EQ(x.classify(60), "Normal");
+    EXPECT_EQ(x.classify(30), normaltext);
+    EXPECT_EQ(x.classify(60), normaltext);
 }
 
 
@@ -56,8 +56,8 @@ TEST(Classificator, AlarmOneNegative)
     //minnormal = -20 maxnormal = 60
     Clasificator x;
     x.calcLimits(-60, 100);
-    EXPECT_EQ(x.classify(-55), "Alarm");
-    EXPECT_EQ(x.classify(94), "Alarm");
+    EXPECT_EQ(x.classify(-55), alarmtext);
+    EXPECT_EQ(x.classify(94), alarmtext);
 }
 
 
@@ -67,8 +67,8 @@ TEST(Classificator, WarningOneNegative)
     //minnormal = -20 maxnormal = 60
     Clasificator x;
     x.calcLimits(-60, 100);
-    EXPECT_EQ(x.classify(-42), "Warning");
-    EXPECT_EQ(x.classify(70), "Warning");
+    EXPECT_EQ(x.classify(-42), warningtext);
+    EXPECT_EQ(x.classify(70), warningtext);
 }
 
 
@@ -78,8 +78,8 @@ TEST(Classificator, NormalAllNegative)
    //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
-    EXPECT_EQ(x.classify(-150), "Normal");
-    EXPECT_EQ(x.classify(-170), "Normal");
+    EXPECT_EQ(x.classify(-150), normaltext);
+    EXPECT_EQ(x.classify(-170), normaltext);
 }
 
 TEST(Classificator, AlarmAllNegative)
@@ -88,8 +88,8 @@ TEST(Classificator, AlarmAllNegative)
    //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
-    EXPECT_EQ(x.classify(-105), "Alarm");
-    EXPECT_EQ(x.classify(-192), "Alarm");
+    EXPECT_EQ(x.classify(-105), alarmtext);
+    EXPECT_EQ(x.classify(-192), alarmtext);
 }
 
 
@@ -99,6 +99,6 @@ TEST(Classificator, WarningAllNegative)
    //minnormal = -175 maxnormal = -125
     Clasificator x;
     x.calcLimits(-200, -100);
-    EXPECT_EQ(x.classify(-180), "Warning");
-    EXPECT_EQ(x.classify(-120), "Warning");
+    EXPECT_EQ(x.classify(-180), warningtext);
+    EXPECT_EQ(x.classify(-120), warningtext);
 }

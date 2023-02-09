@@ -5,11 +5,10 @@
 
 
 Sensor::Sensor(int idz, std::string typez, int minz, int maxz, float frequencyz)
+	: id(idz), type(typez), minvalue(minz), maxvalue(maxz)
+
 {
-	id = idz;
-	type = typez;
-	maxvalue = maxz;
-	minvalue = minz;
+	clasificator.calcLimits(minvalue, maxvalue);
 	setPeriod(frequencyz);
 }
 
@@ -31,7 +30,7 @@ void Sensor::startSensor()
 
 	
 
-	clasificator.calcLimits(minvalue, maxvalue);
+	
 	while (true)
 	{
 		int temp = generate();
