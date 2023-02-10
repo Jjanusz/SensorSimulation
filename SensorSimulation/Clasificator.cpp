@@ -34,3 +34,4 @@ void Clasificator::calcLimits(float min, float max)
 	std::tie(minwarning, maxwarning) = calcLimitRange(min, max, alarm);
 	
 }
+

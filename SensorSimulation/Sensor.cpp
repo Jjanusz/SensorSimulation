@@ -22,31 +22,33 @@ int Sensor::generate()
 	return distrib(gen);
 }
 
-
+void Sensor::publishData(int data, std::string message, int id, std::string type)
+{
+	for (auto& subscriber : subscribers)
+	{
+		subscriber->recvPublishedData( data, message, id, type);
+	}
+}
 
 
 void Sensor::startSensor()
 {
-
-	
-
 	
 	while (true)
 	{
 		int temp = generate();
+		
 		std::unique_lock<std::mutex> lock(mutex);
-		std::cout << "$FIX, ["<< id << "], [" << type << "], [" << temp << "], [" << clasificator.classify(temp)<< "]" << '\n' ; 
+		std::string message = clasificator.classify(temp);
+		publishData(temp, message, id, type);
+		 
 		lock.unlock();
 		std::this_thread::sleep_for(std::chrono::nanoseconds(period));
 		//get unique lock//
 	}
 }
 
-void Sensor::setRange(int min, int max )
-{
-	maxvalue = max;
-	minvalue = min;
-}
+
 
 void Sensor::setPeriod(float f)
 {
@@ -55,4 +57,4 @@ void Sensor::setPeriod(float f)
 	period = static_cast<int>(fperiod);
 }
 
-std::mutex Sensor::mutex;
+ std::mutex Sensor::mutex;

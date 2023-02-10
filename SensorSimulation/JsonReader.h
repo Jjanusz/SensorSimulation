@@ -10,6 +10,7 @@ class JsonReader
 {
 public:
 	void ReadConfig();
+	void ReadDecoderConfig();
 	json data;
 private:
 };
