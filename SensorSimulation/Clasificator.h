@@ -2,15 +2,8 @@
 
 #include <string>
 
-
-
-
-
-
-
 class Clasificator
 {
-	
 public:
 	using LimitRange = std::pair<float, float>;
 	void calcLimits(float, float);

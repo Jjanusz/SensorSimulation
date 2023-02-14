@@ -5,7 +5,6 @@
 
 std::string Clasificator::classify(int value) const
 {
-
 	if (value >= minnormal && value <= maxnormal)
 	{
 		return normaltext;
@@ -18,19 +17,16 @@ std::string Clasificator::classify(int value) const
 	{
 		return alarmtext;
 	}
-	
 }
 
 Clasificator::LimitRange Clasificator::calcLimitRange(float min, float max, float width) const
 {
 	const float tmpmin = (max - min) * width + min;
-	const float tmpmax = (max - min) * (1.0 - width) + min;
+	const float tmpmax = (max - min) * (1.0f - width) + min;
 	return std::make_pair(tmpmin, tmpmax);
 }
 void Clasificator::calcLimits(float min, float max)
 {
-
 	std::tie(minnormal, maxnormal) = calcLimitRange(min, max, warning + alarm);
 	std::tie(minwarning, maxwarning) = calcLimitRange(min, max, alarm);
-	
 }

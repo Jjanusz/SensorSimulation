@@ -11,5 +11,6 @@ class JsonReader
 public:
 	void ReadConfig();
 	json data;
+
 private:
 };

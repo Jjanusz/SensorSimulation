@@ -11,11 +11,10 @@
 
 int main()
 {
-	
+
 	JsonReader config;
 	config.ReadConfig();
-	
-	std::vector<std::unique_ptr<Sensor>> Sensors;
+
 	std::vector<std::thread> StartSensors;
 	for (const auto& element : config.data["Sensors"])
 	{
@@ -26,8 +25,7 @@ int main()
 		std::string Type = element.at("Type");
 
 		std::unique_ptr<Sensor> Sens(new Sensor(id, Type, minvalue, maxvalue, frequency));
-		
-		StartSensors.push_back(std::thread (&Sensor::startSensor, *Sens));
+		StartSensors.push_back(std::thread(&Sensor::startSensor, *Sens));
 	}
 
 	for (std::thread& i : StartSensors)
@@ -36,8 +34,5 @@ int main()
 		{
 			i.join();
 		}
-
 	}
-
-	
 }
