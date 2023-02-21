@@ -7,17 +7,20 @@
 #include <random>
 #include <mutex>
 #include "Clasificator.h"
+#include "Receiver.h"
+
+
 class Sensor
 {
 public:
-	Sensor(int, std::string, int, int, float);
+	Sensor(int, std::string, int, int, float, std::shared_ptr<Receiver> receiverz);
 	static std::mutex mutex;
-	Clasificator clasificator;
+	std::shared_ptr<Receiver> receiver;
 
-	int generate();
+	virtual int generate();
 	void setPeriod(float frequency);
-	void startSensor();
-
+	virtual void startSensor();
+	virtual ~Sensor()=default;
 private:
 	int id;
 	std::string type;
@@ -25,4 +28,3 @@ private:
 	int maxvalue;
 	int minvalue;
 };
-

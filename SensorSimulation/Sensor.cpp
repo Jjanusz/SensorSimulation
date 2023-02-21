@@ -1,11 +1,12 @@
 #pragma once
 #include "Sensor.h"
 
-Sensor::Sensor(int idz, std::string typez, int minz, int maxz, float frequencyz)
-	: id(idz), type(typez), minvalue(minz), maxvalue(maxz)
+Sensor::Sensor(int idz, std::string typez, int minz, int maxz, float frequencyz, std::shared_ptr<Receiver> receiverz)
+	: id(idz), type(typez), minvalue(minz), maxvalue(maxz), receiver(receiverz)
 {
-	clasificator.calcLimits(minvalue, maxvalue);
+	
 	setPeriod(frequencyz);
+	
 }
 
 int Sensor::generate()
@@ -23,7 +24,7 @@ void Sensor::startSensor()
 		int temp = generate();
 		{
 			std::unique_lock<std::mutex> lock(mutex);
-			std::cout << "$FIX, [" << id << "], [" << type << "], [" << temp << "], [" << clasificator.classify(temp) << "]" << '\n';
+			receiver->message(id,type,temp);
 		}
 		std::this_thread::sleep_for(std::chrono::nanoseconds(period));
 	}

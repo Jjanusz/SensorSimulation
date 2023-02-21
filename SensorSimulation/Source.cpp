@@ -14,8 +14,9 @@ int main()
 
 	JsonReader config;
 	config.ReadConfig();
-
+	std::shared_ptr<Clasificator> clasificator(new Clasificator());
 	std::vector<std::thread> StartSensors;
+	std::unique_ptr<Sensor> sens;
 	for (const auto& element : config.data["Sensors"])
 	{
 		int id = element.at("ID");
@@ -24,8 +25,10 @@ int main()
 		int maxvalue = element.at("MaxValue");
 		std::string Type = element.at("Type");
 
-		std::unique_ptr<Sensor> Sens(new Sensor(id, Type, minvalue, maxvalue, frequency));
-		StartSensors.push_back(std::thread(&Sensor::startSensor, *Sens));
+		std::shared_ptr<Receiver> receiver = std::make_unique<Receiver>(clasificator);
+		std::unique_ptr<Sensor> sens = std::make_unique<Sensor>(id, Type, minvalue, maxvalue, frequency, receiver);
+		StartSensors.push_back(std::thread(&Sensor::startSensor,  std::move(sens)));
+		
 	}
 
 	for (std::thread& i : StartSensors)

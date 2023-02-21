@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -143,14 +143,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="JsonReader.cpp" />
+    <ClCompile Include="Receiver.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="Clasificator.cpp" />
+    <ClCompile Include="Sensorint.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clasificator.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="JsonReader.h" />
+    <ClInclude Include="Receiver.h" />
     <ClInclude Include="Sensor.h" />
   </ItemGroup>
   <ItemGroup>
