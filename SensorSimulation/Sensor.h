@@ -17,10 +17,10 @@ public:
 	static std::mutex mutex;
 	std::shared_ptr<Receiver> receiver;
 
-	virtual int generate();
+	int generate();
 	void setPeriod(float frequency);
-	virtual void startSensor();
-	virtual ~Sensor()=default;
+	void startSensor();
+	Sensor()=default;
 private:
 	int id;
 	std::string type;
